@@ -21,8 +21,8 @@
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem>
-                <TextBlock Text="Тимчасова назва статус бару"/>
+            <StatusBarItem MinWidth="100" MaxWidth="300" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding Version}"/>
             </StatusBarItem>
         </StatusBar>
         <Grid>
