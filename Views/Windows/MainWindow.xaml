@@ -14,7 +14,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Вийти"/>
+                <MenuItem Header="Вийти" Command="{Binding CloseAppCommand}"/>
             </MenuItem>
             <MenuItem Header="Допомога">
                 <MenuItem Header="Про програму"/>

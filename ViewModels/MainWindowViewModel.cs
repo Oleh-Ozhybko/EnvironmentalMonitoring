@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using EnvironmentalMonitoring.ViewModels.Base;
+using EnvironmentalMonitoring.Infrastructures.Commands;
 
 namespace EnvironmentalMonitoring.ViewModels
 {
@@ -29,5 +32,26 @@ namespace EnvironmentalMonitoring.ViewModels
             set => Set(ref _version, value);
         }
         #endregion
+
+        #region Commands
+
+        #region CloseAppCommand
+        public ICommand CloseAppCommand { get; }
+        private void OnCloseAppCommandExecuted(object p)
+        {
+            Application.Current.Shutdown();
+        }
+        private bool CanCloseAppCommandExecute(object p) => true;
+        #endregion
+        #endregion
+        public MainWindowViewModel()
+        {
+            #region Commands
+
+            CloseAppCommand = new RelayCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
+
+            #endregion
+
+        }
     }
 }
