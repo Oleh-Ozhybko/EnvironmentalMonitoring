@@ -43,6 +43,17 @@ namespace EnvironmentalMonitoring.ViewModels
         }
         private bool CanCloseAppCommandExecute(object p) => true;
         #endregion
+
+        #region HelpCommand
+
+        public ICommand HelpCommand { get; }
+        private void OnHelpCommandExecuted(object p)
+        {
+            MessageBox.Show("Test Help box");
+        }
+        private bool CanHelpCommandExecute(object p) => true;
+
+        #endregion
         #endregion
         public MainWindowViewModel()
         {
@@ -50,6 +61,7 @@ namespace EnvironmentalMonitoring.ViewModels
 
             CloseAppCommand = new RelayCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
 
+            HelpCommand = new RelayCommand(OnHelpCommandExecuted, CanHelpCommandExecute);
             #endregion
 
         }
