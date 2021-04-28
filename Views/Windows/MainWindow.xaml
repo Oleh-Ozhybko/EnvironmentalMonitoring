@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:EnvironmentalMonitoring.ViewModels"
         xmlns:local="clr-namespace:EnvironmentalMonitoring"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="450" Width="800">
+        Title="{Binding Title}" Height="600" Width="550">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -25,8 +25,25 @@
                 <TextBlock Text="{Binding Version}"/>
             </StatusBarItem>
         </StatusBar>
-        <Grid>
-            
+        <Grid Background="Gainsboro">
+            <Border MinWidth="400" MaxWidth="600" Margin="15" Background="White"
+                    VerticalAlignment="Center" Padding="30"
+                    CornerRadius="20">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="15" Color="Black" ShadowDepth="0"/>
+                </Border.Effect>
+                <StackPanel>
+                    <TextBlock Text="Моніторинг навколишнього середовища у Львівській області" 
+                               HorizontalAlignment="Center" TextAlignment="Center"
+                               TextWrapping="Wrap" FontSize="25" FontWeight="Bold" Margin="0 0 0 20"/>
+                    <Button HorizontalAlignment="Left" Content="Авторизація" 
+                                Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 0 20"/>
+                    <TextBox materialDesign:HintAssist.Hint="Введіть логін" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox materialDesign:HintAssist.Hint="Введіть пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <Button Content="Авторизуватись" Margin="0 20"/>
+                    <Button HorizontalAlignment="Right" Content="Зареєструватись" Style="{StaticResource MaterialDesignFlatButton}"/>
+                </StackPanel>
+            </Border>
         </Grid>
     </DockPanel>
 </Window>
