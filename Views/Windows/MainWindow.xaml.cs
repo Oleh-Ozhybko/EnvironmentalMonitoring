@@ -23,6 +23,7 @@ namespace EnvironmentalMonitoring
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
     }
 }
