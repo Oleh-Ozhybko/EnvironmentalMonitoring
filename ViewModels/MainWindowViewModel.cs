@@ -16,7 +16,7 @@ namespace EnvironmentalMonitoring.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-        string connectionString;
+
         #region Properties
         #region Title of the main window
         private string _title = "Environmental Monitoring in the Lviv region";
@@ -81,7 +81,7 @@ namespace EnvironmentalMonitoring.ViewModels
         public ICommand AuthCommand { get; }
         public void OnAuthCommandExecuted(object p)
         {
-            RegisterMethod();
+            throw new NotImplementedException();
         }
         public bool CanAuthCommandExecute(object p) => true;
         #endregion
@@ -97,12 +97,6 @@ namespace EnvironmentalMonitoring.ViewModels
             AuthCommand = new RelayCommand(OnAuthCommandExecuted, CanAuthCommandExecute);
             #endregion
 
-        }
-        private void RegisterMethod()
-        {
-            connectionString = ConfigurationManager.ConnectionStrings["DefaultSqlConnection"].ConnectionString;
-            string sqlExpression = "SELECT * FROM EM_Users WHERE User_login=";
-            
         }
     }
 }
