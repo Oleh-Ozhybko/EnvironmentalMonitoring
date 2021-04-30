@@ -8,6 +8,7 @@ using System.Windows.Input;
 using EnvironmentalMonitoring.ViewModels.Base;
 using EnvironmentalMonitoring.Infrastructures.Commands;
 using EnvironmentalMonitoring.Models;
+using EnvironmentalMonitoring;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
 
@@ -16,6 +17,15 @@ namespace EnvironmentalMonitoring.ViewModels
     class MainWindowViewModel : ViewModelBase
     {
         string connectionString;
+        #region Properties
+        #region LoginTextBoxProp
+        private string _loginTextBoxProp = String.Empty;
+        public string LoginTextBoxProp
+        {
+            get => _loginTextBoxProp;
+            set => Set(ref _loginTextBoxProp, value);
+        }
+        #endregion
         #region Title of the main window
         private string _title = "Environmental Monitoring in the Lviv region";
         ///<summary>Заголовок вікна</summary>
@@ -36,7 +46,7 @@ namespace EnvironmentalMonitoring.ViewModels
             set => Set(ref _version, value);
         }
         #endregion
-
+        #endregion
         #region Commands
 
         #region CloseAppCommand
@@ -63,7 +73,7 @@ namespace EnvironmentalMonitoring.ViewModels
         public ICommand AuthCommand { get; }
         public void OnAuthCommandExecuted(object p)
         {
-            
+            RegisterMethod();
         }
         public bool CanAuthCommandExecute(object p) => true;
         #endregion
@@ -72,13 +82,19 @@ namespace EnvironmentalMonitoring.ViewModels
         public MainWindowViewModel()
         {
             #region Commands
-
+            
             CloseAppCommand = new RelayCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
 
             HelpCommand = new RelayCommand(OnHelpCommandExecuted, CanHelpCommandExecute);
             AuthCommand = new RelayCommand(OnAuthCommandExecuted, CanAuthCommandExecute);
             #endregion
 
+        }
+        private void RegisterMethod()
+        {
+            connectionString = ConfigurationManager.ConnectionStrings["DefaultSqlConnection"].ConnectionString;
+            string sqlExpression = "SELECT * FROM EM_Users WHERE User_login=";
+            
         }
     }
 }
