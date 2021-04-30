@@ -18,6 +18,15 @@ namespace EnvironmentalMonitoring.ViewModels
     {
         string connectionString;
         #region Properties
+        #region Title of the main window
+        private string _title = "Environmental Monitoring in the Lviv region";
+        ///<summary>Заголовок вікна</summary>
+        public string Title
+        {
+            get => _title;
+            set => Set(ref _title, value);
+        }
+        #endregion
         #region LoginTextBoxProp
         private string _loginTextBoxProp = String.Empty;
         public string LoginTextBoxProp
@@ -26,13 +35,12 @@ namespace EnvironmentalMonitoring.ViewModels
             set => Set(ref _loginTextBoxProp, value);
         }
         #endregion
-        #region Title of the main window
-        private string _title = "Environmental Monitoring in the Lviv region";
-        ///<summary>Заголовок вікна</summary>
-        public string Title
+        #region PasswordBoxProp
+        private string _passwordBoxProp;
+        public string PasswordBoxProp
         {
-            get => _title;
-            set => Set(ref _title, value);
+            get => _passwordBoxProp;
+            set => Set(ref _passwordBoxProp, value);
         }
         #endregion
         #region Program version

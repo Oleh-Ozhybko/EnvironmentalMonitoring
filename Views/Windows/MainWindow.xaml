@@ -39,7 +39,7 @@
                     <Button HorizontalAlignment="Left" Content="Авторизація" 
                                 Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 0 20"/>
                     <TextBox Text="{Binding LoginTextBoxProp}" materialDesign:HintAssist.Hint="Введіть логін" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                    <TextBox materialDesign:HintAssist.Hint="Введіть пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                    <TextBox Text="{Binding PasswordBoxProp}" materialDesign:HintAssist.Hint="Введіть пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                     <Button Content="Авторизуватись" Margin="0 20" Command="{Binding AuthCommand}"/>
                     <Button HorizontalAlignment="Right" Content="Зареєструватись" Style="{StaticResource MaterialDesignFlatButton}"/>
                 </StackPanel>
