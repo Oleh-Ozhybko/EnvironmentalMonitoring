@@ -10,6 +10,7 @@ namespace EnvironmentalMonitoring.ViewModels.Base
 {
     internal abstract class ViewModelBase : INotifyPropertyChanged
     {
+        public Action CloseAction { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string PropertyName = null)
         {

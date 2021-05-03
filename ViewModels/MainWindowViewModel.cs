@@ -18,7 +18,6 @@ namespace EnvironmentalMonitoring.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-        public Action CloseAction { get; set; }
         #region Properties
         #region Title of the main window
         private string _title = "Environmental Monitoring in the Lviv region";
@@ -64,6 +63,7 @@ namespace EnvironmentalMonitoring.ViewModels
         {
             RegistrationWindow registrationWindow = new RegistrationWindow();
             registrationWindow.Show();
+            CloseAction();
         }
         private bool CanOpenRegWindowExecute(object p) => true;
 
