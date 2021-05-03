@@ -12,11 +12,13 @@ using EnvironmentalMonitoring;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
 using EnvironmentalMonitoring.Data;
+using EnvironmentalMonitoring.Views.Windows;
 
 namespace EnvironmentalMonitoring.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
+        public Action CloseAction { get; set; }
         #region Properties
         #region Title of the main window
         private string _title = "Environmental Monitoring in the Lviv region";
@@ -57,6 +59,14 @@ namespace EnvironmentalMonitoring.ViewModels
         #endregion
         #region Commands
 
+        public ICommand OpenRegWindow { get; }
+        private void OnOpenRegWindowExecuted(object p)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
+        }
+        private bool CanOpenRegWindowExecute(object p) => true;
+
         #region CloseAppCommand
         public ICommand CloseAppCommand { get; }
         private void OnCloseAppCommandExecuted(object p)
@@ -89,6 +99,7 @@ namespace EnvironmentalMonitoring.ViewModels
             }
             if (tempUser != null)
                 MessageBox.Show($"Ви ввійшли в системи під логіном - {tempUser.login}");
+
             else MessageBox.Show("Логін або пароль введено не вірно");
         }
         public bool CanAuthCommandExecute(object p) => true;
@@ -100,11 +111,11 @@ namespace EnvironmentalMonitoring.ViewModels
             #region Commands
             
             CloseAppCommand = new RelayCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
-
             HelpCommand = new RelayCommand(OnHelpCommandExecuted, CanHelpCommandExecute);
             AuthCommand = new RelayCommand(OnAuthCommandExecuted, CanAuthCommandExecute);
+            OpenRegWindow = new RelayCommand(OnOpenRegWindowExecuted, CanOpenRegWindowExecute);
             #endregion
-
+            
         }
     }
 }
