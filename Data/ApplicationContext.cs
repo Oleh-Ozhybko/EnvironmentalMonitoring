@@ -15,7 +15,8 @@ namespace EnvironmentalMonitoring.Data
         public ApplicationContext() { }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("DefaultSqlConnection");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=EnvironmentalMonitoring;
+          Trusted_Connection = True");
         }
 
     }

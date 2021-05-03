@@ -11,12 +11,13 @@ using EnvironmentalMonitoring.Models;
 using EnvironmentalMonitoring;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
+using EnvironmentalMonitoring.Data;
 
 namespace EnvironmentalMonitoring.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-
+        ApplicationContext context;
         #region Properties
         #region Title of the main window
         private string _title = "Environmental Monitoring in the Lviv region";
@@ -81,7 +82,7 @@ namespace EnvironmentalMonitoring.ViewModels
         public ICommand AuthCommand { get; }
         public void OnAuthCommandExecuted(object p)
         {
-            throw new NotImplementedException();
+            
         }
         public bool CanAuthCommandExecute(object p) => true;
         #endregion
@@ -89,6 +90,7 @@ namespace EnvironmentalMonitoring.ViewModels
         #endregion
         public MainWindowViewModel()
         {
+            context = new ApplicationContext();
             #region Commands
             
             CloseAppCommand = new RelayCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
