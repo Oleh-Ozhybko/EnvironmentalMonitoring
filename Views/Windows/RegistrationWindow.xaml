@@ -24,7 +24,7 @@
                 <TextBox Text="{Binding LoginTextBoxProp}" materialDesign:HintAssist.Hint="Введіть логін" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <TextBox Text="{Binding PasswordBoxProp}" materialDesign:HintAssist.Hint="Введіть пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <TextBox Text="{Binding EmailTextBoxProp}" materialDesign:HintAssist.Hint="Введіть Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <Button Content="Зареєструватись" Margin="0 20" Command="{Binding AuthCommand}"/>
+                <Button Content="Зареєструватись" Margin="0 20" Command="{Binding RegCommand}"/>
                 <Button Command="{Binding OpenMainWindow}" HorizontalAlignment="Right" Content="Ввійти" Style="{StaticResource MaterialDesignFlatButton}"/>
             </StackPanel>
         </Border>

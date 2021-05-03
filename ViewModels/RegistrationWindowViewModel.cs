@@ -4,7 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using EnvironmentalMonitoring.Data;
+using EnvironmentalMonitoring.Infrastructures.Commands;
+using EnvironmentalMonitoring.Models;
 using EnvironmentalMonitoring.ViewModels.Base;
+
 
 namespace EnvironmentalMonitoring.ViewModels
 {
@@ -47,13 +51,38 @@ namespace EnvironmentalMonitoring.ViewModels
         #endregion
 
         #region Commands
+        #region OpenMainWindow
+        public ICommand OpenMainWindow { get; }
+        private void OnOpenMainWindowExecuted(object p)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            CloseAction();
+        }
+        private bool CanOpenMainWindowExecute(object p) => true;
+        #endregion
+        #region RegCommand
+        public ICommand RegCommand { get; }
+        private void OnRegCommandExecuted(object p)
+        {
+            User tempUser;
+            using (ApplicationContext context = new ApplicationContext())
+            {
+                tempUser = new User { login = LoginTextBoxProp, password = PasswordBoxProp, email = EmailTextBoxProp };
+                context.Users.Add(tempUser);
+                context.SaveChanges();
 
+            }
+        }
+        private bool CanRegCommandExecute(object p) => true;
+        #endregion
         #endregion
 
         public RegistrationWindowViewModel()
         {
             #region Commands
-            
+            OpenMainWindow = new RelayCommand(OnOpenMainWindowExecuted, CanOpenMainWindowExecute);
+            RegCommand = new RelayCommand(OnRegCommandExecuted, CanRegCommandExecute);
             #endregion
         }
     }

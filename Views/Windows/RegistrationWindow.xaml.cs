@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using EnvironmentalMonitoring.ViewModels;
 namespace EnvironmentalMonitoring.Views.Windows
 {
     /// <summary>
@@ -22,6 +22,11 @@ namespace EnvironmentalMonitoring.Views.Windows
         public RegistrationWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            RegistrationWindowViewModel vm = new RegistrationWindowViewModel();
+            DataContext = vm;
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(Close);
         }
     }
 }
