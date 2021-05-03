@@ -3,10 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:EnvironmentalMonitoring.Views.Windows"
+        xmlns:vm="clr-namespace:EnvironmentalMonitoring.ViewModels"
         mc:Ignorable="d"
-        Title="RegistrationWindow" Height="450" Width="800">
+        Title="{Binding Title}" Height="450" Width="450">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <Grid>
-        
+        <Border MinWidth="400" MaxWidth="600" Margin="15" Background="White"
+                    VerticalAlignment="Center" Padding="30"
+                    CornerRadius="20">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="15" Color="Black" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel>
+                <Button HorizontalAlignment="Left" Content="Реєстрація" 
+                                Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 0 20"/>
+                <TextBox Text="{Binding LoginTextBoxProp}" materialDesign:HintAssist.Hint="Введіть логін" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox Text="{Binding PasswordBoxProp}" materialDesign:HintAssist.Hint="Введіть пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox Text="{Binding PasswordBoxProp}" materialDesign:HintAssist.Hint="Введіть повторно пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox Text="{Binding PasswordBoxProp}" materialDesign:HintAssist.Hint="Введіть Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <Button Content="Зареєструватись" Margin="0 20" Command="{Binding AuthCommand}"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
