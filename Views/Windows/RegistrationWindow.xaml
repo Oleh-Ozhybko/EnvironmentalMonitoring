@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="450">
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:RegistrationWindowViewModel/>
     </Window.DataContext>
     <Grid>
         <Border MinWidth="400" MaxWidth="600" Margin="15" Background="White"
@@ -23,9 +23,9 @@
                                 Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 0 20"/>
                 <TextBox Text="{Binding LoginTextBoxProp}" materialDesign:HintAssist.Hint="Введіть логін" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <TextBox Text="{Binding PasswordBoxProp}" materialDesign:HintAssist.Hint="Введіть пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox Text="{Binding PasswordBoxProp}" materialDesign:HintAssist.Hint="Введіть повторно пароль" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-                <TextBox Text="{Binding PasswordBoxProp}" materialDesign:HintAssist.Hint="Введіть Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox Text="{Binding EmailTextBoxProp}" materialDesign:HintAssist.Hint="Введіть Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
                 <Button Content="Зареєструватись" Margin="0 20" Command="{Binding AuthCommand}"/>
+                <Button Command="{Binding OpenMainWindow}" HorizontalAlignment="Right" Content="Ввійти" Style="{StaticResource MaterialDesignFlatButton}"/>
             </StackPanel>
         </Border>
     </Grid>
