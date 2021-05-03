@@ -17,7 +17,6 @@ namespace EnvironmentalMonitoring.ViewModels
 {
     class MainWindowViewModel : ViewModelBase
     {
-        ApplicationContext context;
         #region Properties
         #region Title of the main window
         private string _title = "Environmental Monitoring in the Lviv region";
@@ -82,7 +81,15 @@ namespace EnvironmentalMonitoring.ViewModels
         public ICommand AuthCommand { get; }
         public void OnAuthCommandExecuted(object p)
         {
-            
+            User tempUser;
+            using (ApplicationContext context = new ApplicationContext())
+            {
+                tempUser = context.Users.Where(u => u.login == LoginTextBoxProp && u.password == PasswordBoxProp)
+                    .FirstOrDefault();
+            }
+            if (tempUser != null)
+                MessageBox.Show($"Ви ввійшли в системи під логіном - {tempUser.login}");
+            else MessageBox.Show("Логін або пароль введено не вірно");
         }
         public bool CanAuthCommandExecute(object p) => true;
         #endregion
@@ -90,7 +97,6 @@ namespace EnvironmentalMonitoring.ViewModels
         #endregion
         public MainWindowViewModel()
         {
-            context = new ApplicationContext();
             #region Commands
             
             CloseAppCommand = new RelayCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
