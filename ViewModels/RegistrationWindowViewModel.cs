@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using EnvironmentalMonitoring.Data;
 using EnvironmentalMonitoring.Infrastructures.Commands;
@@ -65,14 +66,20 @@ namespace EnvironmentalMonitoring.ViewModels
         public ICommand RegCommand { get; }
         private void OnRegCommandExecuted(object p)
         {
-            User tempUser;
-            using (ApplicationContext context = new ApplicationContext())
+            if (IsValid())
             {
-                tempUser = new User { login = LoginTextBoxProp, password = PasswordBoxProp, email = EmailTextBoxProp };
-                context.Users.Add(tempUser);
-                context.SaveChanges();
-
+                User tempUser;
+                using (ApplicationContext context = new ApplicationContext())
+                {
+                    tempUser = new User { login = LoginTextBoxProp, password = PasswordBoxProp, email = EmailTextBoxProp };
+                    context.Users.Add(tempUser);
+                    context.SaveChanges();
+                }
+                MessageBox.Show("Реєстрація відбулась успішно!");
             }
+            else
+                MessageBox.Show("Ви ввели не вірно дані для заповнення");
+
         }
         private bool CanRegCommandExecute(object p) => true;
         #endregion
@@ -85,5 +92,49 @@ namespace EnvironmentalMonitoring.ViewModels
             RegCommand = new RelayCommand(OnRegCommandExecuted, CanRegCommandExecute);
             #endregion
         }
+        #region Validation region
+        private bool IsValid()
+        {
+            if (isLoginValid() && IsEmailValid() && isPasswordValid())
+            {
+                using (ApplicationContext context = new ApplicationContext())
+                {
+                    User tempUser = context.Users.Where(u => u.login == LoginTextBoxProp ||
+                    u.email == EmailTextBoxProp).FirstOrDefault();
+                    if (tempUser == null)
+                        return true;
+                    else
+                        MessageBox.Show("Такий логін або Email вже існує");
+                }
+            }
+            return false;
+        }
+        private bool isLoginValid()
+        {
+            LoginTextBoxProp.ToLower().Trim();
+            if (LoginTextBoxProp.Length > 5 && LoginTextBoxProp.Length < 20)
+                return true;
+
+            MessageBox.Show("Логін має містити не менше 5 символів і не більше 20");
+            return false;
+        }
+        private bool IsEmailValid()
+        {
+            EmailTextBoxProp.ToLower().Trim();
+            if (EmailTextBoxProp.Length > 5 && EmailTextBoxProp.Length < 30 && EmailTextBoxProp.Contains("@"))
+                return true;
+
+            MessageBox.Show("Email має містити не менше 5 символів і не більше 20");
+            return false;
+        }
+        private bool isPasswordValid()
+        {
+            if (PasswordBoxProp.Length > 5 && PasswordBoxProp.Length < 20)
+                return true;
+
+            MessageBox.Show("Пароль введено не вірно");
+            return false;
+        }
+        #endregion
     }
 }

@@ -57,7 +57,7 @@ namespace EnvironmentalMonitoring.ViewModels
         #endregion
         #endregion
         #region Commands
-
+        #region OpenRegWindow
         public ICommand OpenRegWindow { get; }
         private void OnOpenRegWindowExecuted(object p)
         {
@@ -66,6 +66,7 @@ namespace EnvironmentalMonitoring.ViewModels
             CloseAction();
         }
         private bool CanOpenRegWindowExecute(object p) => true;
+        #endregion
 
         #region CloseAppCommand
         public ICommand CloseAppCommand { get; }
