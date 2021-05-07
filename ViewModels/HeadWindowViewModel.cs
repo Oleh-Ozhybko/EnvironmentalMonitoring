@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using EnvironmentalMonitoring.Infrastructures.Commands;
 
 namespace EnvironmentalMonitoring.ViewModels
 {
@@ -21,13 +24,19 @@ namespace EnvironmentalMonitoring.ViewModels
         #endregion
 
         #region Commands
+        public ICommand CloseAppWindowCommand { get; }
+        private void OnCloseAppWindowExecute(object p)
+        {
+            Application.Current.Shutdown();
+        }
+        private bool CanCloseAppWindowExecute(object p) => true;
 
         #endregion
 
         public HeadWindowViewModel()
         {
             #region Commands
-
+            CloseAppWindowCommand = new RelayCommand(OnCloseAppWindowExecute, CanCloseAppWindowExecute);
             #endregion
         }
     }
