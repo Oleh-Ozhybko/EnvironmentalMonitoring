@@ -100,7 +100,7 @@ namespace EnvironmentalMonitoring.ViewModels
             }
             if (tempUser != null)
             {
-                MessageBox.Show($"Ви ввійшли в системи під логіном - {tempUser.login}");
+                MessageBox.Show($"Ви ввійшли в систему під логіном - {tempUser.login}");
                 HeadWindow headWindow = new HeadWindow();
                 headWindow.Show();
                 CloseAction();

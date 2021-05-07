@@ -29,6 +29,7 @@ namespace EnvironmentalMonitoring.ViewModels
             set => Set(ref _version, value);
         }
         #endregion
+
         #endregion
 
         #region Commands
@@ -39,12 +40,21 @@ namespace EnvironmentalMonitoring.ViewModels
         }
         private bool CanCloseAppWindowExecute(object p) => true;
 
+        #region HelpCommand
+        public ICommand HelpCommand { get; }
+        private void OnHelpCommandExecuted(object p)
+        {
+            MessageBox.Show("Not implemented");
+        }
+        private bool CanHelpCommandExecute(object p) => true;
+        #endregion
         #endregion
 
         public HeadWindowViewModel()
         {
             #region Commands
             CloseAppWindowCommand = new RelayCommand(OnCloseAppWindowExecute, CanCloseAppWindowExecute);
+            HelpCommand = new RelayCommand(OnHelpCommandExecuted, CanHelpCommandExecute);
             #endregion
         }
     }
