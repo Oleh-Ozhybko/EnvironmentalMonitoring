@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using EnvironmentalMonitoring.ViewModels;
 
 namespace EnvironmentalMonitoring.Views.Windows
 {
@@ -22,6 +23,11 @@ namespace EnvironmentalMonitoring.Views.Windows
         public HeadWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            HeadWindowViewModel vm = new HeadWindowViewModel();
+            DataContext = vm;
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(Close);
         }
     }
 }

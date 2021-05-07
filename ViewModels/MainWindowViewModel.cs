@@ -99,7 +99,12 @@ namespace EnvironmentalMonitoring.ViewModels
                     .FirstOrDefault();
             }
             if (tempUser != null)
+            {
                 MessageBox.Show($"Ви ввійшли в системи під логіном - {tempUser.login}");
+                HeadWindow headWindow = new HeadWindow();
+                headWindow.Show();
+                CloseAction();
+            }
 
             else MessageBox.Show("Логін або пароль введено не вірно");
         }
