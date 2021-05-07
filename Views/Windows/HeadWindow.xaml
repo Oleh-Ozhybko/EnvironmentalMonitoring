@@ -20,8 +20,8 @@
             </MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
-            <StatusBarItem>
-                <TextBlock Text="Text"/>
+            <StatusBarItem MinWidth="100" MaxWidth="300" HorizontalAlignment="Left">
+                <TextBlock Text="{Binding Version}"/>
             </StatusBarItem>
         </StatusBar>
         <TabControl>

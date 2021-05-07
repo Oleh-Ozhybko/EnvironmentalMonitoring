@@ -21,6 +21,14 @@ namespace EnvironmentalMonitoring.ViewModels
             set => Set(ref _title, value);
         }
         #endregion
+        #region Program version
+        private string _version = "1.0";
+        public string Version
+        {
+            get => _version;
+            set => Set(ref _version, value);
+        }
+        #endregion
         #endregion
 
         #region Commands
