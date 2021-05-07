@@ -68,25 +68,6 @@ namespace EnvironmentalMonitoring.ViewModels
         private bool CanOpenRegWindowExecute(object p) => true;
         #endregion
 
-        #region CloseAppCommand
-        public ICommand CloseAppCommand { get; }
-        private void OnCloseAppCommandExecuted(object p)
-        {
-            Application.Current.Shutdown();
-        }
-        private bool CanCloseAppCommandExecute(object p) => true;
-        #endregion
-
-        #region HelpCommand
-
-        public ICommand HelpCommand { get; }
-        private void OnHelpCommandExecuted(object p)
-        {
-            MessageBox.Show("Test Help box");
-        }
-        private bool CanHelpCommandExecute(object p) => true;
-
-        #endregion
 
         #region AuthCommand
         public ICommand AuthCommand { get; }
@@ -115,9 +96,6 @@ namespace EnvironmentalMonitoring.ViewModels
         public MainWindowViewModel()
         {
             #region Commands
-            
-            CloseAppCommand = new RelayCommand(OnCloseAppCommandExecuted, CanCloseAppCommandExecute);
-            HelpCommand = new RelayCommand(OnHelpCommandExecuted, CanHelpCommandExecute);
             AuthCommand = new RelayCommand(OnAuthCommandExecuted, CanAuthCommandExecute);
             OpenRegWindow = new RelayCommand(OnOpenRegWindowExecuted, CanOpenRegWindowExecute);
             #endregion
