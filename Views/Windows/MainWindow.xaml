@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:EnvironmentalMonitoring.ViewModels"
         xmlns:local="clr-namespace:EnvironmentalMonitoring"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="450" Width="470">
+        Title="{Binding Title}" Height="490" Width="470">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
